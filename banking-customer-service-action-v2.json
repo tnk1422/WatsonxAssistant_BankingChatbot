@@ -1,0 +1,4281 @@
+{
+  "name": "Banking Customer Service-action",
+  "type": "action",
+  "counts": {
+    "actions": 10,
+    "intents": 7,
+    "entities": 20,
+    "data_types": 0,
+    "collections": 0,
+    "global_variables": 25
+  },
+  "status": "Available",
+  "language": "en",
+  "skill_id": "fe78b9b0-d2cf-49ef-a9e7-b1fa51af0b09",
+  "workspace": {
+    "actions": [
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_796",
+            "handlers": [],
+            "resolver": {
+              "type": "callout",
+              "callout": {
+                "path": "/ml/v1/text/generation",
+                "type": "integration_interaction",
+                "method": "POST",
+                "internal": {
+                  "spec_hash_id": "540081b16fe217626f2ff197e583c2f1c7ef19f0752c8b875ec454036cfdda7f",
+                  "catalog_item_id": "2b36bd04-9d7f-4370-96be-dd0a59467916"
+                },
+                "request_mapping": {
+                  "body": [
+                    {
+                      "value": {
+                        "skill_variable": "model_input"
+                      },
+                      "parameter": "input"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_id"
+                      },
+                      "parameter": "model_id"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "watsonx_project_id"
+                      },
+                      "parameter": "project_id"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_top_k"
+                      },
+                      "parameter": "parameters.top_k"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_top_p"
+                      },
+                      "parameter": "parameters.top_p"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_time_limit"
+                      },
+                      "parameter": "parameters.time_limit"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_random_seed"
+                      },
+                      "parameter": "parameters.random_seed"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_temperature"
+                      },
+                      "parameter": "parameters.temperature"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_max_new_tokens"
+                      },
+                      "parameter": "parameters.max_new_tokens"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_min_new_tokens"
+                      },
+                      "parameter": "parameters.min_new_tokens"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_stop_sequences"
+                      },
+                      "parameter": "parameters.stop_sequences"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_decoding_method"
+                      },
+                      "parameter": "parameters.decoding_method"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_repetition_penalty"
+                      },
+                      "parameter": "parameters.repetition_penalty"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "model_parameters_include_stop_sequence"
+                      },
+                      "parameter": "parameters.include_stop_sequence"
+                    }
+                  ],
+                  "query": [
+                    {
+                      "value": {
+                        "skill_variable": "watsonx_api_version"
+                      },
+                      "parameter": "version"
+                    }
+                  ]
+                },
+                "result_variable": "step_796_result_1"
+              }
+            },
+            "variable": "step_796",
+            "next_step": "step_930"
+          },
+          {
+            "step": "step_930",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "${step_796_result_1.body.results}[0].generated_text"
+                  },
+                  "skill_variable": "model_response"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_930",
+            "condition": {
+              "and": [
+                {
+                  "eq": [
+                    {
+                      "variable": "step_796_result_1",
+                      "variable_path": "success"
+                    },
+                    {
+                      "scalar": true
+                    }
+                  ]
+                },
+                {
+                  "expression": "${step_796_result_1.body.results}.size() > 0"
+                }
+              ]
+            },
+            "next_step": "step_525"
+          },
+          {
+            "step": "step_525",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "null"
+                  },
+                  "skill_variable": "model_response"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_525"
+          }
+        ],
+        "title": "Invoke watsonx generation API",
+        "action": "action_20548-2-2",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_43808_intent_33082-2-2"
+        },
+        "variables": [
+          {
+            "variable": "step_167_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_169_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_217_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_222_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_237_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_237_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_239_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_286_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_472_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_474_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_474_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_492_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_525",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_597_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_796",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_796_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_890_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_930",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_942_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_978_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_982_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_3978",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_291",
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "\"\""
+                  },
+                  "skill_variable": "passages"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_291",
+            "next_step": "step_896"
+          },
+          {
+            "step": "step_896",
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "\"\""
+                  },
+                  "skill_variable": "passages"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_896",
+            "next_step": "step_167"
+          },
+          {
+            "step": "step_167",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "\"[Document]\" + \"\\n\" + ${search_results}.get(0).title + \"\\n\" + ${search_results}.get(0).document_passages.get(0).passage_text + \"\\n\" + \"[End]\" + \"\\n\""
+                  },
+                  "skill_variable": "snippet"
+                },
+                {
+                  "value": {
+                    "expression": "${snippet}"
+                  },
+                  "skill_variable": "passages"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_167",
+            "condition": {
+              "and": [
+                {
+                  "expression": "${search_results}.size > 0"
+                },
+                {
+                  "expression": "${search_results}.get(0).document_passages.size > 0"
+                }
+              ]
+            },
+            "next_step": "step_239"
+          },
+          {
+            "step": "step_239",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "\"[Document]\" + \"\\n\" + ${search_results}.get(1).title + \"\\n\" + ${search_results}.get(1).document_passages.get(0).passage_text + \"\\n\" + \"[End]\" + \"\\n\""
+                  },
+                  "skill_variable": "snippet"
+                },
+                {
+                  "value": {
+                    "expression": "${passages}.concat(${snippet})"
+                  },
+                  "skill_variable": "passages"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_239",
+            "condition": {
+              "and": [
+                {
+                  "expression": "${search_results}.size > 1"
+                },
+                {
+                  "expression": "${search_results}.get(1).document_passages.size > 0"
+                }
+              ]
+            },
+            "next_step": "step_982"
+          },
+          {
+            "step": "step_982",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "\"[Document]\" + \"\\n\" + ${search_results}.get(2).title + \"\\n\" + ${search_results}.get(2).document_passages.get(0).passage_text + \"\\n\" + \"[End]\" + \"\\n\""
+                  },
+                  "skill_variable": "snippet"
+                },
+                {
+                  "value": {
+                    "expression": "${passages}.concat(${snippet})"
+                  },
+                  "skill_variable": "passages"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_982",
+            "condition": {
+              "and": [
+                {
+                  "expression": "${search_results}.size > 2"
+                },
+                {
+                  "expression": "${search_results}.get(2).document_passages.size > 0"
+                }
+              ]
+            },
+            "next_step": "step_858"
+          },
+          {
+            "step": "step_858",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "${passages}.replaceAll(\"<em>\",\"\").replaceAll(\"</em>\",\"\")"
+                  },
+                  "skill_variable": "passages"
+                },
+                {
+                  "value": {
+                    "expression": "(\"<|system|>\\nYou are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.\\n<|user|>\\nYou are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is correct given the context and user query, and that it is grounded in the context. Furthermore, make sure that the response is supported by the given document or context. When the question cannot be answered using the context or document, output the following response: \\'I apologize, but I could not locate any relevant information.\\' Always make sure that your response is relevant to the question. If an explanation is needed, first provide the explanation or reasoning, and then give the final answer.\\nAnswer Length: comprehensive.\\n\").concat(${passages}).concat(${query_text}).concat(\"\\n<|assistant|>\\n\")"
+                  },
+                  "skill_variable": "model_input"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_858",
+            "next_step": "step_762"
+          },
+          {
+            "step": "step_762",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Invoking watsonx "
+                          },
+                          {
+                            "skill_variable": "model_id"
+                          },
+                          {
+                            "scalar": " with "
+                          },
+                          {
+                            "skill_variable": "model_input"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_762",
+            "condition": {
+              "eq": [
+                {
+                  "skill_variable": "verbose"
+                },
+                {
+                  "scalar": true
+                }
+              ]
+            },
+            "next_step": "step_657"
+          },
+          {
+            "step": "step_657",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_20548-2-2",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_657_result_2"
+              }
+            },
+            "variable": "step_657",
+            "next_step": "step_323"
+          },
+          {
+            "step": "step_323",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm sorry, I encountered an connection error: "
+                          },
+                          {
+                            "skill_variable": "model_response"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_323",
+            "condition": {
+              "not": {
+                "exists": {
+                  "skill_variable": "model_response"
+                }
+              }
+            },
+            "next_step": "step_600"
+          },
+          {
+            "step": "step_600",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm sorry, I was not able to find an answer to your question."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_600",
+            "condition": {
+              "matches": [
+                {
+                  "skill_variable": "model_response"
+                },
+                {
+                  "scalar": "I don't know",
+                  "options": {
+                    "ignore_case": true
+                  }
+                }
+              ]
+            },
+            "next_step": "step_525"
+          },
+          {
+            "step": "step_525",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": ""
+                          },
+                          {
+                            "skill_variable": "model_response"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_525"
+          }
+        ],
+        "title": "Generate Answer",
+        "action": "action_20548-2",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_43808_intent_33082-2"
+        },
+        "variables": [
+          {
+            "title": "",
+            "variable": "step_167",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_167_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_169_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_217_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_222_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_237_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_237_result_2",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_239",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_239_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_286_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_291",
+            "data_type": "any"
+          },
+          {
+            "title": "I'm sorry, I encountered an connection error: {variable}",
+            "variable": "step_323",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_472_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_474_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_474_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_492_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "{variable}",
+            "variable": "step_525",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_597_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "I'm sorry, I was not able to find an answer to your question.",
+            "variable": "step_600",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_657",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_657_result_2",
+            "data_type": "any"
+          },
+          {
+            "title": "Invoking watsonx {variable} with {variable}",
+            "variable": "step_762",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_858",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_890_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": true
+            },
+            "variable": "step_896",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_942_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_978_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_982",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_982_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_44059-2",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_546",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "***WARNING***\n\n<br />\n\n\n\n**discovery_project_id** is not defined, which will cause queries to **Watson Discovery** to fail.\n\n<br />\n\n\n\nTo find your Watson Discovery project_id, please open [your Watson Discovery instance](https://cloud.ibm.com/resources), open your Watson Discovery project, navigate to 'Integrate and deploy', then click 'API Information', then copy the Project ID.\n\n<br />\n\n\n\nThen,"
+                          },
+                          {
+                            "scalar": " set the initial value of discovery_project_id to this copied Project ID by opening your Assistant instance, navigating to the Actions page, clicking 'Created by me' under 'Variables', clicking discovery_project_id, pasting the Project ID as the Initial value, and clicking Save.\n\n<br />\n\n\n\n--\n\nNeed more help? Contact your IBM representative, [book a call](https://www.ibm."
+                          },
+                          {
+                            "scalar": "com/account/reg/signup?formid=MAIL-watson), or [email our team](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-watsonassistant) for support."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_546",
+            "condition": {
+              "and": [
+                {
+                  "not": {
+                    "exists": {
+                      "skill_variable": "discovery_project_id"
+                    }
+                  }
+                },
+                {
+                  "contains": [
+                    {
+                      "system_variable": "last_seen_at"
+                    },
+                    {
+                      "scalar": "ibm.com",
+                      "options": {
+                        "ignore_case": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_325"
+          },
+          {
+            "step": "step_325",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "***WARNING***\n\n<br />\n\n\n\n**watsonx_project_id** is not defined, which will cause calls to **watsonx** to fail.\n\n<br />\n\n\n\nTo find your watsonx project_id, please open [your watsonx instance](https://dataplatform.cloud.ibm.com/wx/home?context=wx), click your watsonx project, navigate to 'Manage', then click 'General', then copy the Project ID.\n\n<br />\n\n\n\nThen,"
+                          },
+                          {
+                            "scalar": " set the initial value of watsonx_project_id to this copied Project ID by opening your Assistant instance, navigating to the Actions page, clicking 'Created by me' under 'Variables', clicking watsonx_project_id, pasting the Project ID as the Initial value, and clicking Save.\n\n<br />\n\n\n\n--\n\nNeed more help? Contact your IBM representative, [book a call](https://www.ibm."
+                          },
+                          {
+                            "scalar": "com/account/reg/signup?formid=MAIL-watson), or [email our team](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-watsonassistant) for support."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_325",
+            "condition": {
+              "and": [
+                {
+                  "not": {
+                    "exists": {
+                      "skill_variable": "watsonx_project_id"
+                    }
+                  }
+                },
+                {
+                  "contains": [
+                    {
+                      "system_variable": "last_seen_at"
+                    },
+                    {
+                      "scalar": "ibm.com",
+                      "options": {
+                        "ignore_case": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_774"
+          },
+          {
+            "step": "step_774",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "input.original_text"
+                  },
+                  "skill_variable": "query_text"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_774",
+            "next_step": "step_983"
+          },
+          {
+            "step": "step_983",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "input.text"
+                  },
+                  "skill_variable": "query_text"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_983",
+            "condition": {
+              "not": {
+                "exists": {
+                  "skill_variable": "query_text"
+                }
+              }
+            },
+            "next_step": "step_474"
+          },
+          {
+            "step": "step_474",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "callout",
+              "callout": {
+                "path": "/v2/projects/{project_id}/query",
+                "type": "integration_interaction",
+                "method": "POST",
+                "internal": {
+                  "spec_hash_id": "8566081a305e8f8ade4e9bd3887da0600e87948417fc10ba38ee121426f8c50b",
+                  "catalog_item_id": "aaa00704-b5c2-4e7d-8a73-4fa5f2270676"
+                },
+                "request_mapping": {
+                  "body": [
+                    {
+                      "value": {
+                        "expression": "3"
+                      },
+                      "parameter": "count"
+                    },
+                    {
+                      "value": {
+                        "expression": "[\"title\",\"metadata.source.url\"]"
+                      },
+                      "parameter": "return"
+                    },
+                    {
+                      "value": {
+                        "expression": "[\"text\"]"
+                      },
+                      "parameter": "passages.fields"
+                    },
+                    {
+                      "value": {
+                        "expression": "true"
+                      },
+                      "parameter": "passages.enabled"
+                    },
+                    {
+                      "value": {
+                        "expression": "250"
+                      },
+                      "parameter": "passages.characters"
+                    },
+                    {
+                      "value": {
+                        "expression": "true"
+                      },
+                      "parameter": "passages.find_answers"
+                    },
+                    {
+                      "value": {
+                        "expression": "false"
+                      },
+                      "parameter": "table_results.enabled"
+                    },
+                    {
+                      "value": {
+                        "skill_variable": "query_text"
+                      },
+                      "parameter": "natural_language_query"
+                    },
+                    {
+                      "value": {
+                        "scalar": true
+                      },
+                      "parameter": "passages.per_document"
+                    }
+                  ],
+                  "path": [
+                    {
+                      "value": {
+                        "skill_variable": "discovery_project_id"
+                      },
+                      "parameter": "project_id"
+                    }
+                  ],
+                  "query": [
+                    {
+                      "value": {
+                        "skill_variable": "discovery_date_version"
+                      },
+                      "parameter": "version"
+                    }
+                  ]
+                },
+                "result_variable": "step_474_result_2"
+              }
+            },
+            "variable": "step_474",
+            "next_step": "step_105"
+          },
+          {
+            "step": "step_105",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Sorry, the search failed!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_105",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_474_result_2",
+                  "variable_path": "success"
+                },
+                {
+                  "scalar": false
+                }
+              ]
+            },
+            "next_step": "step_237"
+          },
+          {
+            "step": "step_237",
+            "output": {
+              "generic": []
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "${step_474_result_2}.body.results"
+                  },
+                  "skill_variable": "search_results"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_20548-2",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_237_result_2"
+              }
+            },
+            "variable": "step_237",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_474_result_2",
+                  "variable_path": "success"
+                },
+                {
+                  "scalar": true
+                }
+              ]
+            },
+            "next_step": "step_195"
+          },
+          {
+            "step": "step_195",
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": "${step_474_result_2}.body.results=[]"
+                  },
+                  "skill_variable": "search_results"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_195"
+          }
+        ],
+        "title": "Search",
+        "action": "action_44059-2",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_47312_intent_17298-2"
+        },
+        "variables": [
+          {
+            "variable": "step_001_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry, the search failed!",
+            "variable": "step_105",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_117_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_146_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_164_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_167_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_169_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_195",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_222_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_237",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_237_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_237_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_249_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_272_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_286_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "***WARNING*** <br /> **watsonx_project_id** is not defined, whic",
+            "variable": "step_325",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_338_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_418_result_2",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_474",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_474_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_474_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_492_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_543_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "***WARNING*** <br /> **discovery_project_id** is not defined, wh",
+            "variable": "step_546",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_597_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_748_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_749_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "variable": "step_774",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_774_result_2",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_829_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_863_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_876_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_896_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_978_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_983",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_20548-2-2",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_364",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here are different Credit Card Types. Please choose one to get more details."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Cashback",
+                      "value": {
+                        "input": {
+                          "text": "Cashback"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Travel",
+                      "value": {
+                        "input": {
+                          "text": "Travel"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_38862",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_364",
+            "next_step": "step_703"
+          },
+          {
+            "step": "step_703",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here are more details for "
+                          },
+                          {
+                            "variable": "step_364"
+                          },
+                          {
+                            "scalar": "\n\n<br />\n\n\n\nThese cards offer a percentage of the amount spent on purchases back to the cardholder as a cash rebate. Cashback rewards can vary based on spending categories."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_703",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_364"
+                },
+                {
+                  "value": "Cashback",
+                  "from_entity": "entity_38862"
+                }
+              ]
+            },
+            "next_step": "step_306"
+          },
+          {
+            "step": "step_306",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here are more details for "
+                          },
+                          {
+                            "variable": "step_364"
+                          },
+                          {
+                            "scalar": " card\n\n<br />\n\n\n\nTravel credit cards are designed for frequent travelers and offer benefits such as airline miles, hotel discounts, travel insurance, airport lounge access, and no foreign transaction fees."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_306",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_364"
+                },
+                {
+                  "value": "Travel",
+                  "from_entity": "entity_38862"
+                }
+              ]
+            },
+            "next_step": "step_300"
+          },
+          {
+            "step": "step_300",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Do  you want to open a new account?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Later",
+                      "value": {
+                        "input": {
+                          "text": "Later"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_8319",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_300",
+            "next_step": "step_361"
+          },
+          {
+            "step": "step_361",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thank you for your Time. What else I can help you with ?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_20548-2",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_361_result_1"
+              }
+            },
+            "variable": "step_361",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_300"
+                },
+                {
+                  "value": "Later",
+                  "from_entity": "entity_8319"
+                }
+              ]
+            },
+            "next_step": "step_164"
+          },
+          {
+            "step": "step_164",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_3978",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_164_result_2"
+              }
+            },
+            "variable": "step_164",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_300"
+                },
+                {
+                  "value": "Yes",
+                  "from_entity": "entity_8319"
+                }
+              ]
+            },
+            "next_step": "step_408"
+          },
+          {
+            "step": "step_408",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thank you. Please let me know if I can help with anything else ?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_20548-2",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_408_result_1"
+              }
+            },
+            "variable": "step_408",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_300"
+                },
+                {
+                  "value": "No",
+                  "from_entity": "entity_8319"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Different Credit Card types",
+        "action": "action_34761",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_34761_intent_10177"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_164",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_164_result_2",
+            "data_type": "any"
+          },
+          {
+            "title": "Do you want to open a new account?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_300",
+            "data_type": "any"
+          },
+          {
+            "title": "Here are more details for {variable} card <br /> Travel credit c",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_306",
+            "data_type": "any"
+          },
+          {
+            "title": "Thank you for your Time. What else I can help you with ?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_361",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_361_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Here are different Credit Card Types. Please choose one to get m",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_364",
+            "data_type": "any"
+          },
+          {
+            "title": "Thank you. Please let me know if I can help with anything else ?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_408",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_408_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Here are more details for {variable} <br /> These cards offer a ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_703",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_20548-2",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_211",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I can help you with that! To create an account, we will need a few pieces of information. Let me guide you through this process!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_211",
+            "next_step": "step_491"
+          },
+          {
+            "step": "step_491",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "First, please provide your **first name.**"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "question": {
+              "free_text": true
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_491",
+            "next_step": "step_847"
+          },
+          {
+            "step": "step_847",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thanks! Now, enter your **last name.**"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "question": {
+              "free_text": true
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_847",
+            "next_step": "step_615"
+          },
+          {
+            "step": "step_615",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Awesome. I'll also need an email address associated with your new account. We will need to send you an email to confirm it's really you!\n\n<br />\n\n\n\nWhich **email address** would you like to use?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Please enter a valid email address."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_28770",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_615",
+            "next_step": "step_196"
+          },
+          {
+            "step": "step_196",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "For added security, we can also add a phone number to your account. Would you like to do so?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes, I'd like to add a phone number.",
+                      "value": {
+                        "input": {
+                          "text": "Yes, I'd like to add a phone number."
+                        }
+                      }
+                    },
+                    {
+                      "label": "No, my email will do just fine.",
+                      "value": {
+                        "input": {
+                          "text": "No, my email will do just fine."
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_48205",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_196",
+            "next_step": "step_240"
+          },
+          {
+            "step": "step_240",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Okay, please enter your **phone** **number** below."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Please enter a valid phone number."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_6294",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_240",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_196"
+                },
+                {
+                  "value": "Yes, I'd like to add a phone number.",
+                  "from_entity": "entity_48205"
+                }
+              ]
+            },
+            "next_step": "step_510"
+          },
+          {
+            "step": "step_510",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "No problem, let's keep going!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_510",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_196"
+                },
+                {
+                  "value": "No, my email will do just fine.",
+                  "from_entity": "entity_48205"
+                }
+              ]
+            },
+            "next_step": "step_437"
+          },
+          {
+            "step": "step_437",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Finally, I'll also need your **date of birth** in MMDDYYYY format. This will also serve as your 8-digit authentication PIN.\n\n<br />\n\n\n\nKeep this number handy in case you are locked out of your account."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "response_type": "date"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Please enter a valid date of birth in MMDDYYYY format."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-date",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_437",
+            "next_step": "step_568"
+          },
+          {
+            "step": "step_568",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thanks! Does the following information look correct? If so, I will proceed with creating your account.\n\n\n  - **Name**: "
+                          },
+                          {
+                            "variable": "step_847"
+                          },
+                          {
+                            "scalar": ", "
+                          },
+                          {
+                            "variable": "step_491"
+                          },
+                          {
+                            "scalar": "\n  - **Email Address:** "
+                          },
+                          {
+                            "variable": "step_615"
+                          },
+                          {
+                            "scalar": "\n  - **Phone Number:** "
+                          },
+                          {
+                            "variable": "step_240"
+                          },
+                          {
+                            "scalar": "\n  - **Birthday:** "
+                          },
+                          {
+                            "variable": "step_437"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_568",
+            "condition": {
+              "or": [
+                {
+                  "exists": {
+                    "variable": "step_240"
+                  }
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_196"
+                    },
+                    {
+                      "value": "Yes, I'd like to add a phone number.",
+                      "from_entity": "entity_48205"
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_975"
+          },
+          {
+            "step": "step_975",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thanks! Does the following information look correct? If so, I will proceed with creating your account.\n\n\n  - **Name**: "
+                          },
+                          {
+                            "variable": "step_847"
+                          },
+                          {
+                            "scalar": ", "
+                          },
+                          {
+                            "variable": "step_491"
+                          },
+                          {
+                            "scalar": "\n  - **Email Address:** "
+                          },
+                          {
+                            "variable": "step_615"
+                          },
+                          {
+                            "scalar": "\n  - **Birthday:** "
+                          },
+                          {
+                            "variable": "step_437"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_975",
+            "condition": {
+              "or": [
+                {
+                  "not": {
+                    "exists": {
+                      "variable": "step_240"
+                    }
+                  }
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_196"
+                    },
+                    {
+                      "value": "No, my email will do just fine.",
+                      "from_entity": "entity_48205"
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_936"
+          },
+          {
+            "step": "step_936",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Sorry about that. Let's try this again."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_211"
+                },
+                {
+                  "variable": "step_491"
+                },
+                {
+                  "variable": "step_847"
+                },
+                {
+                  "variable": "step_615"
+                },
+                {
+                  "variable": "step_196"
+                },
+                {
+                  "variable": "step_240"
+                },
+                {
+                  "variable": "step_510"
+                },
+                {
+                  "variable": "step_437"
+                },
+                {
+                  "variable": "step_568"
+                },
+                {
+                  "variable": "step_975"
+                }
+              ]
+            },
+            "variable": "step_936",
+            "condition": {
+              "or": [
+                {
+                  "eq": [
+                    {
+                      "variable": "step_568"
+                    },
+                    {
+                      "scalar": "no"
+                    }
+                  ]
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_975"
+                    },
+                    {
+                      "scalar": "no"
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_429"
+          },
+          {
+            "step": "step_429",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "You did it! Your new account is being created and you will receive an email confirmation shortly.\n\n<br />\n\n\n\nWelcome!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_429",
+            "condition": {
+              "or": [
+                {
+                  "eq": [
+                    {
+                      "variable": "step_568"
+                    },
+                    {
+                      "scalar": "yes"
+                    }
+                  ]
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_975"
+                    },
+                    {
+                      "scalar": "yes"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Create an account",
+        "action": "action_3978",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_3978_intent_47611"
+        },
+        "variables": [
+          {
+            "title": "For added security, we can also add a phone number to your accou",
+            "variable": "step_196",
+            "data_type": "any"
+          },
+          {
+            "title": "I can help you with that! To create an account, we will need a f",
+            "variable": "step_211",
+            "data_type": "any"
+          },
+          {
+            "title": "Okay, please enter your **phone** **number** below.",
+            "variable": "step_240",
+            "data_type": "any"
+          },
+          {
+            "title": "You did it! Your new account is being created and you will recei",
+            "variable": "step_429",
+            "data_type": "any"
+          },
+          {
+            "title": "Finally, I'll also need your **date of birth** in MMDDYYYY forma",
+            "variable": "step_437",
+            "data_type": "date"
+          },
+          {
+            "title": "First, please provide your **first name.**",
+            "variable": "step_491",
+            "data_type": "any"
+          },
+          {
+            "title": "Alright, let's keep going!",
+            "variable": "step_510",
+            "data_type": "any"
+          },
+          {
+            "title": "Thanks! Does the following information look correct? If so, I wi",
+            "variable": "step_568",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Awesome. I'll also need an email address associated with your ne",
+            "variable": "step_615",
+            "data_type": "any"
+          },
+          {
+            "title": "Second, you will need to enter your personal details. When you'r",
+            "variable": "step_806",
+            "data_type": "any"
+          },
+          {
+            "title": "Thanks! Now, enter your **last name.**",
+            "variable": "step_847",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry about that. Let's try this again.",
+            "variable": "step_936",
+            "data_type": "any"
+          },
+          {
+            "title": "Thanks! Does the following information look correct? If so, I wi",
+            "variable": "step_975",
+            "data_type": "yes_no"
+          }
+        ],
+        "next_action": "action_27804",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_558",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_44059-2",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_558_result_1"
+              }
+            },
+            "variable": "step_558",
+            "next_step": "step_001"
+          },
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. Please rephrase your question."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No action matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "I am afraid I do not understand what you are asking, please re-p",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_558",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_558_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "digression_failure",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't confirm if you wanted to return to previous topic, let me connect to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "digression_failure",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Failed to confirm topic return"
+                }
+              ]
+            },
+            "next_step": "step_001"
+          },
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. I can connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            },
+            "next_step": "step_004"
+          },
+          {
+            "step": "step_004",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_004",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Danger word detected"
+                }
+              ]
+            },
+            "next_step": "step_005"
+          },
+          {
+            "step": "step_005",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_005",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Profanity detected"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "Topic return failed",
+            "variable": "digression_failure",
+            "data_type": "any"
+          },
+          {
+            "title": "I'm afraid I don't understand. I can connect you to an agent.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "I am afraid I do not understand what you are asking, let me conn",
+            "variable": "step_003",
+            "data_type": "any"
+          },
+          {
+            "title": "It seems this conversation would be best managed",
+            "variable": "step_004",
+            "data_type": "any"
+          },
+          {
+            "title": "Profanity - It seems this conversation",
+            "variable": "step_005",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "run_always",
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "danger_word_detected",
+            "title": "Connect to agent",
+            "handlers": [],
+            "resolver": {
+              "type": "fallback"
+            },
+            "variable": "danger_word_detected_variable",
+            "condition": {
+              "entity": "danger_words"
+            },
+            "next_step": "profanity_detected"
+          },
+          {
+            "step": "profanity_detected",
+            "title": "Show warning",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please use appropriate language when interacting with the assistant."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "max_hits",
+                "handler": "max_hits_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "max_hits": 2,
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "profanity_detected_variable",
+            "condition": {
+              "entity": "profane_words"
+            }
+          }
+        ],
+        "title": "Trigger word detected",
+        "action": "run_always",
+        "boosts": [],
+        "handlers": [],
+        "variables": [
+          {
+            "title": "Profanity detected",
+            "variable": "danger_word_detected_variable",
+            "data_type": "any"
+          },
+          {
+            "title": "Profane word detected",
+            "variable": "profanity_detected_variable",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else"
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_517",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_27804",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_517_result_1"
+              }
+            },
+            "variable": "step_517",
+            "next_step": "step_001"
+          },
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Welcome, how can I assist you?"
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_517",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_517_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_34761",
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_272",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "To get started, please enter your **email address.**"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Please enter a valid email address."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_22093",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_272",
+            "next_step": "step_523"
+          },
+          {
+            "step": "step_523",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thanks! Next, please enter your **Phone Number**"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "please enter valid **Phone Number**"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_15134",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_523",
+            "next_step": "step_911"
+          },
+          {
+            "step": "step_911",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Great news! We found you in our system. Redirecting you now..."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_911",
+            "condition": {
+              "and": [
+                {
+                  "eq": [
+                    {
+                      "variable": "step_272"
+                    },
+                    {
+                      "value": "Email",
+                      "from_entity": "entity_22093"
+                    }
+                  ]
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_523"
+                    },
+                    {
+                      "value": "Phone number",
+                      "from_entity": "entity_15134"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Authenticate a user",
+        "action": "action_27804",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_27804_intent_18035"
+        },
+        "variables": [
+          {
+            "title": "To get started, please enter your **email address.**",
+            "variable": "step_272",
+            "data_type": "any"
+          },
+          {
+            "title": "Thanks! Next, please enter your **Phone Number**",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_523",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_829_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Great news! We found you in our system. Redirecting you now...",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_911",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_43808_intent_33082-2",
+        "examples": []
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "I would like to speak to someone"
+          },
+          {
+            "text": "Can I connect to an agent?"
+          },
+          {
+            "text": "I would like to speak to a human"
+          },
+          {
+            "text": "Agent help"
+          },
+          {
+            "text": "Call agent"
+          }
+        ],
+        "description": "Please transfer me to an agent"
+      },
+      {
+        "intent": "action_34761_intent_10177",
+        "examples": [
+          {
+            "text": "Different Credit Card types"
+          },
+          {
+            "text": "What are current offers going on for Credit Card"
+          }
+        ]
+      },
+      {
+        "intent": "action_3978_intent_47611",
+        "examples": [
+          {
+            "text": "Make account"
+          },
+          {
+            "text": "Please tell me how to register as one of your members."
+          },
+          {
+            "text": "Registration"
+          },
+          {
+            "text": "Start new account"
+          },
+          {
+            "text": "What do I need to do to start an account with your company?"
+          },
+          {
+            "text": "What is required to get signed up here?"
+          },
+          {
+            "text": "What is the process to making an account?"
+          },
+          {
+            "text": "Where can I register?"
+          },
+          {
+            "text": "Where does a first time visitor sign up?"
+          },
+          {
+            "text": "Where do I find guidance on signing up?"
+          },
+          {
+            "text": "Where do I register for this?"
+          },
+          {
+            "text": "Begin account"
+          },
+          {
+            "text": "Can you show me where to register for the program?"
+          },
+          {
+            "text": "Could you explain how to create a fresh account?"
+          },
+          {
+            "text": "Create account"
+          },
+          {
+            "text": "Go joining here?"
+          },
+          {
+            "text": "How can I register over here?"
+          },
+          {
+            "text": "How do I become a customer?"
+          },
+          {
+            "text": "I'd like to register"
+          }
+        ]
+      },
+      {
+        "intent": "action_27804_intent_18035",
+        "examples": [
+          {
+            "text": "Authenticate me"
+          },
+          {
+            "text": "Log in"
+          },
+          {
+            "text": "Sign in"
+          },
+          {
+            "text": "Access my account"
+          },
+          {
+            "text": "Get into my account"
+          }
+        ]
+      },
+      {
+        "intent": "action_47312_intent_17298-2",
+        "examples": []
+      },
+      {
+        "intent": "action_43808_intent_33082-2-2",
+        "examples": []
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_36542",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Email",
+            "patterns": [
+              "\\b(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\\b"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-date",
+        "values": []
+      },
+      {
+        "entity": "entity_28770",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Email",
+            "patterns": [
+              "\\b(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\\b"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_25899",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Email",
+            "patterns": [
+              "\\b(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\\b"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_19645",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Checking account",
+            "synonyms": [
+              "Checking"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "Savings account",
+            "synonyms": [
+              "Savings"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_17250",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Regular_expression",
+            "patterns": [
+              "\"^(?:.*[a-z])(?:.*[A-Z])(?:.*\\d)(?:.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\""
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-currency",
+        "values": []
+      },
+      {
+        "entity": "sys-yes-no",
+        "values": []
+      },
+      {
+        "entity": "entity_15134",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Phone number",
+            "patterns": [
+              "\\b(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\b"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_8319",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "No",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Later",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Yes",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-number",
+        "values": []
+      },
+      {
+        "entity": "danger_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "sys-time",
+        "values": []
+      },
+      {
+        "entity": "entity_8657",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Regular_expression",
+            "patterns": [
+              "\"^(?:.*[a-z])(?:.*[A-Z])(?:.*\\d)(?:.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\""
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_38862",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Cashback",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Travel",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_22093",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Email",
+            "patterns": [
+              "\\b(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\\b"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "profane_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "entity_48205",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Yes, I'd like to add a phone number.",
+            "synonyms": [
+              "OK",
+              "sounds good",
+              "that's fine",
+              "ya",
+              "yep",
+              "Yes"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "No, my email will do just fine.",
+            "synonyms": [
+              "Nah",
+              "no",
+              "nope",
+              "no thanks"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-percentage",
+        "values": []
+      },
+      {
+        "entity": "entity_6294",
+        "values": [
+          {
+            "type": "patterns",
+            "value": "Phone number",
+            "patterns": [
+              "\\b(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\b"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      },
+      "skill": {
+        "counts": {
+          "actions": 10,
+          "intents": 7,
+          "entities": 20,
+          "data_types": 0,
+          "collections": 0,
+          "global_variables": 25
+        }
+      }
+    },
+    "variables": [
+      {
+        "title": "discovery_date_version",
+        "variable": "discovery_date_version",
+        "data_type": "any",
+        "description": "Discovery date versions are documented in the release notes (https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-release-notes).",
+        "initial_value": {
+          "scalar": "2022-08-01"
+        }
+      },
+      {
+        "title": "discovery_project_id",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "discovery_project_id",
+        "data_type": "string",
+        "description": "You MUST set this value to the project ID of the Discovery project containing your data",
+        "initial_value": {
+          "scalar": "14f427dd-4d2b-470e-9512-70098d06eb56"
+        }
+      },
+      {
+        "title": "Email",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "Email",
+        "data_type": "string",
+        "description": "",
+        "initial_value": {
+          "scalar": "tarak.konar@gmail.com,abc@gmail.com"
+        }
+      },
+      {
+        "title": "model_id",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_id",
+        "data_type": "string",
+        "description": "The ID of the model to be used for this user prompt.",
+        "initial_value": {
+          "scalar": "ibm/granite-13b-chat-v2"
+        }
+      },
+      {
+        "title": "model_input",
+        "variable": "model_input",
+        "data_type": "string",
+        "description": "input to the watsonx model"
+      },
+      {
+        "title": "model_parameters_decoding_method",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_decoding_method",
+        "data_type": "string",
+        "description": "The strategy used for picking the tokens during generation of the output text.",
+        "initial_value": {
+          "scalar": "greedy"
+        }
+      },
+      {
+        "title": "model_parameters_include_stop_sequence",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_include_stop_sequence",
+        "data_type": "boolean",
+        "description": "The value to control presence of matched stop sequences from the end of the output text."
+      },
+      {
+        "title": "model_parameters_max_new_tokens",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_max_new_tokens",
+        "data_type": "number",
+        "description": "The maximum number of new tokens to be generated.",
+        "initial_value": {
+          "scalar": 256
+        }
+      },
+      {
+        "title": "model_parameters_min_new_tokens",
+        "variable": "model_parameters_min_new_tokens",
+        "data_type": "number",
+        "description": "The minimum number of new tokens to be generated.",
+        "initial_value": {
+          "scalar": 1
+        }
+      },
+      {
+        "title": "model_parameters_random_seed",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_random_seed",
+        "data_type": "number",
+        "description": "A random number generator seed to use in sampling mode for experimental repeatability."
+      },
+      {
+        "title": "model_parameters_repetition_penalty",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_repetition_penalty",
+        "data_type": "number",
+        "description": "The penalty for penalizing tokens that have already been generated or belong to the context.",
+        "initial_value": {
+          "scalar": 1.05
+        }
+      },
+      {
+        "title": "model_parameters_stop_sequences",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_stop_sequences",
+        "data_type": "any",
+        "description": "The strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored.",
+        "initial_value": {
+          "expression": "[]"
+        }
+      },
+      {
+        "title": "model_parameters_temperature",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_temperature",
+        "data_type": "number",
+        "description": "The value used to control the next token probabilities. The range is from 0.05 to 1.00; 0.05 makes it mostly deterministic.",
+        "initial_value": {
+          "scalar": 0
+        }
+      },
+      {
+        "title": "model_parameters_time_limit",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_time_limit",
+        "data_type": "number",
+        "description": "The amount of time in milliseconds to wait before stopping generation. The text generated so far will be returned along with the TIME_LIMIT stop reason."
+      },
+      {
+        "title": "model_parameters_top_k",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_top_k",
+        "data_type": "number",
+        "description": "The number of highest probability vocabulary tokens to keep for top-k-filtering."
+      },
+      {
+        "title": "model_parameters_top_p",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "model_parameters_top_p",
+        "data_type": "number",
+        "description": "Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p."
+      },
+      {
+        "title": "model_response",
+        "variable": "model_response",
+        "data_type": "string",
+        "description": "The text generated by the model in response to the model input"
+      },
+      {
+        "title": "passages",
+        "variable": "passages",
+        "data_type": "string",
+        "description": ""
+      },
+      {
+        "title": "Phone",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "Phone",
+        "data_type": "string",
+        "description": "",
+        "initial_value": {
+          "scalar": "123-345-1234,345-456-7897"
+        }
+      },
+      {
+        "title": "query_text",
+        "variable": "query_text",
+        "data_type": "any",
+        "description": "You MAY change this to pass queries to Watson Discovery. By default the Search action passes the user’s input.text directly."
+      },
+      {
+        "title": "search_results",
+        "variable": "search_results",
+        "data_type": "any",
+        "description": "Response object from Discovery query (https://cloud.ibm.com/apidocs/discovery-data#query)."
+      },
+      {
+        "title": "snippet",
+        "variable": "snippet",
+        "data_type": "any",
+        "description": ""
+      },
+      {
+        "title": "verbose",
+        "variable": "verbose",
+        "data_type": "boolean",
+        "description": "Prints debug output when true",
+        "initial_value": {
+          "scalar": false
+        }
+      },
+      {
+        "title": "watsonx_api_version",
+        "variable": "watsonx_api_version",
+        "data_type": "any",
+        "description": "The version of the watsonx api (required)",
+        "initial_value": {
+          "scalar": "2023-05-29"
+        }
+      },
+      {
+        "title": "watsonx_project_id",
+        "privacy": {
+          "enabled": false
+        },
+        "variable": "watsonx_project_id",
+        "data_type": "any",
+        "description": "You MUST set this to your watsonx project id",
+        "initial_value": {
+          "scalar": "7a69fb8b-f1c7-46b5-87fa-8e6e29737d24"
+        }
+      }
+    ],
+    "data_types": [],
+    "collections": [],
+    "counterexamples": [],
+    "system_settings": {
+      "nlp": {
+        "model": "latest"
+      },
+      "variable": {
+        "format": {
+          "time": {
+            "pattern": "short"
+          },
+          "currency": {
+            "fraction_digits": 2
+          }
+        }
+      },
+      "off_topic": {
+        "enabled": true
+      },
+      "auto_learn": {
+        "apply": true
+      },
+      "launch_mode": {
+        "default": "learning",
+        "enabled": false,
+        "learning": {
+          "step_retry_threshold": 2,
+          "use_connect_to_support": "more_often",
+          "single_answer_clarification": "more_often",
+          "disambiguation_clarification": "more_often"
+        },
+        "confident": {
+          "step_retry_threshold": 4,
+          "use_connect_to_support": "sometimes",
+          "single_answer_clarification": "sometimes",
+          "disambiguation_clarification": "sometimes"
+        }
+      },
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "enable_confirmation": true,
+          "confirmation_failure": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "I'm sorry, I did not catch that, please confirm."
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              }
+            ]
+          },
+          "confirmation_request": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "Do you want to continue with the previous topic: "
+                        },
+                        {
+                          "system_variable": "digressed_from"
+                        },
+                        {
+                          "scalar": "?"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              },
+              {
+                "options": [
+                  {
+                    "label": "Yes",
+                    "value": {
+                      "input": {
+                        "text": "Yes"
+                      }
+                    }
+                  },
+                  {
+                    "label": "No",
+                    "value": {
+                      "input": {
+                        "text": "No"
+                      }
+                    }
+                  }
+                ],
+                "response_type": "option",
+                "repeat_on_reprompt": true
+              }
+            ]
+          }
+        },
+        "max_tries": 3
+      },
+      "disambiguation": {
+        "prompt": "Did you mean:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "None of the above",
+        "use_connect_to_support_prompt": "connect to support",
+        "single_answer_clarification_prompt": "Something else"
+      },
+      "spelling_auto_correct": true
+    },
+    "learning_opt_out": true,
+    "language": "en"
+  },
+  "description": "created for assistant 1c76effb-2430-4334-8897-6cdad3c6282b",
+  "dialog_settings": {
+    "source_assistant": "9ec0a8f4-a71b-4394-9624-10ee9806e08c"
+  },
+  "created": "2024-04-11T01:40:40.334Z",
+  "updated": "2024-04-11T01:40:40.334Z",
+  "snapshot": "2",
+  "assistant_id": "451e407f-4177-4268-96ee-0ed3e624a4b2",
+  "assistant_references": []
+}
